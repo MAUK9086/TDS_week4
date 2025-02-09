@@ -1,0 +1,29 @@
+name: Daily Commit Workflow
+
+on:
+  schedule:
+    # Cron syntax: Runs every day at 12:00 PM (UTC)
+    - cron: '0 12 * * *'
+
+jobs:
+  daily_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Git
+      - name: Set up Git
+        run: |
+          git config --global user.name "DevSync Bot"
+          git config --global user.email "23f1001788@ds.study.iitm.ac.in"
+
+      # Step 3: Create an empty commit with a message
+      - name: Create a commit
+        run: |
+          echo "Automated daily commit" > daily_update.txt
+          git add daily_update.txt
+          git commit -m "Daily automated commit by 23f1001788@ds.study.iitm.ac.in"
+          git push
