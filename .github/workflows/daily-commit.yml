@@ -1,3 +1,8 @@
+on: 
+  push: []
+  pull_request: []
+
+
 name: Daily Commit Workflow
 
 on:
